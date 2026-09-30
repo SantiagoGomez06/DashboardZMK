@@ -1,4 +1,4 @@
-name: Deploy React Vite to GitHub Pages
+name: Deploy DashboardZMK to GitHub Pages
 
 on:
   push:
