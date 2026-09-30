@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <rect width="256" height="256" rx="32" fill="#1e3a8a"/>
+  <circle cx="64" cy="192" r="28" fill="#f8fafc"/>
+  <rect x="92" y="176" width="120" height="32" rx="8" fill="#f8fafc"/>
+  <path d="M40 80h176l-24 64H64z" fill="#10b981"/>
+  <text x="128" y="118" text-anchor="middle" fill="#0f172a" font-size="42" font-family="Arial" font-weight="700">ZMK</text>
+</svg>

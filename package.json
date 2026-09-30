@@ -1,0 +1,89 @@
+{
+  "name": "zmk-logistica-360",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "main": "electron/out/main.cjs",
+  "description": "Dashboard de exposición ZMK Logística 360",
+  "author": "Sindy Tatiana Velez Gallego",
+  "scripts": {
+    "dev": "vite",
+    "dev:desktop": "node scripts/build-electron.mjs && concurrently -k \"vite\" \"wait-on http://127.0.0.1:5173 && electron .\"",
+    "test": "vitest run",
+    "lint": "oxlint src electron",
+    "build": "tsc -b && vite build",
+    "build:single": "vite build --mode singlefile && node scripts/copy-single.mjs",
+    "build:icon": "node scripts/build-icon.mjs",
+    "build:electron": "node scripts/build-electron.mjs",
+    "build:desktop:win": "npm test && npm run build && npm run build:icon && npm run build:electron && electron-builder --win --x64",
+    "build:all": "npm run build:desktop:win && npm run build:single",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@fontsource/source-sans-3": "^5.3.0",
+    "framer-motion": "^13.4.6",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "recharts": "^3.10.1",
+    "zustand": "^5.0.15"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "concurrently": "^10.0.5",
+    "electron": "^44.5.1",
+    "electron-builder": "^26.15.3",
+    "oxlint": "^1.81.0",
+    "png-to-ico": "^3.0.2",
+    "prettier": "^3.9.9",
+    "sharp": "^0.35.5",
+    "tailwindcss": "^4.3.3",
+    "typescript": "~6.0.2",
+    "vite": "^8.3.0",
+    "vite-plugin-singlefile": "^2.3.3",
+    "vitest": "^5.0.3",
+    "wait-on": "^9.5.1"
+  },
+  "build": {
+    "appId": "co.zmk.logistica360",
+    "productName": "ZMK Logística 360",
+    "copyright": "Uso académico — Sindy Tatiana Velez Gallego",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/out/**/*",
+      "build/icon.png",
+      "build/icon.ico",
+      "package.json"
+    ],
+    "asar": true,
+    "win": {
+      "icon": "build/icon.ico",
+      "signAndEditExecutable": false,
+      "target": [
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        },
+        {
+          "target": "zip",
+          "arch": ["x64"]
+        }
+      ]
+    },
+    "portable": {
+      "artifactName": "ZMK-Logistica-360.exe"
+    },
+    "zip": {
+      "artifactName": "ZMK-Logistica-360-win.zip"
+    },
+    "nsis": {
+      "artifactName": "ZMK-Logistica-360-setup.${ext}"
+    }
+  }
+}
